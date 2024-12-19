@@ -1,6 +1,19 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        error: ''
+    })
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setFormData((prev)=>({...prev, [name]: value}))
+    }
    
     return (
         <>
@@ -39,6 +52,18 @@ const SignUp = () => {
                         <input className="border-dotted border-2 px-3 w-80 rounded-xl py-1" 
                         type="password" 
                         placeholder="Password" 
+                        autoComplete='off'
+                        name='password'
+                        required
+                        />
+                    </div>
+                    <div className="flex items-center gap-2 mb-4">
+                        <label htmlFor="name">
+                            <strong>Password</strong>
+                        </label>
+                        <input className="border-dotted border-2 px-3 w-80 rounded-xl py-1" 
+                        type="password" 
+                        placeholder="Confirm Password" 
                         autoComplete='off'
                         name='password'
                         required
