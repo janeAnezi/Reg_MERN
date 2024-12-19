@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
    
     return (
         <>
-            <div className="flex justify-center items-center bg-slate-500 pt-12 pb-12 ">
+            <div className="flex justify-center flex-col items-center bg-slate-500 pt-12 pb-12 ">
                 <form  className=" bg-white inline-block w-96 p-5 text-center rounded-lg">
                     <h1 className="text-2xl font-bold tracking-wider pt-2 pb-0.5">Register</h1>
                     
@@ -43,11 +44,9 @@ const SignUp = () => {
                         required
                         />
                     </div>
-                    <button className="bg-gradient-to-r from-blue-300 to-blue-900 text-white font-bold w-72 px-3 rounded-xl py-1 mb-4" type="submit">Register</button>
-
-                    <p>Already a member? <a className="text-blue-700 fon t-semibold" href='#'>Login</a></p>
+                    <button className="bg-gradient-to-r from-blue-300 to-blue-900 text-white font-bold w-80 px-3 rounded-xl py-1 mb-4" type="submit">Register</button> 
                 </form>
-              
+                <p>Already a member? <Link to='/login' className="text-blue-700 font-semibold">Login</Link></p>
             </div>
         </>
     )
