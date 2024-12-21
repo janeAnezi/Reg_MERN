@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
@@ -11,11 +12,14 @@ const Login = () => {
         const {name, value} = e.target;
         setFormData(() => ({...prev, [name]: value}))
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
 
     return (
         <>
             <div className="flex justify-center flex-col items-center bg-slate-500 pt-20 pb-16 ">
-                <form  className=" bg-white inline-block w-96 p-5 text-center rounded-lg">
+                <form onSubmit={handleSubmit}  className=" bg-white inline-block w-96 p-5 text-center rounded-lg">
                     <h1 className="text-2xl font-bold tracking-wider pt-2 pb-1.5">Login</h1>
                     
                     <div className="flex items-center gap-9 mt-4 mb-4">
