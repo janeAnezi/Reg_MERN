@@ -4,9 +4,9 @@ import axios from 'axios'
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
+        userName: '',
+        userEmail: '',
+        userPassword: '',
         // confirmPassword: '',
         error: ''
     })
@@ -18,7 +18,7 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('',{name, email,password})
+        axios.post('http://localhost:5000/register',{userName, userEmail, userPassword})
         .then(result => console.log(result))
         .catch(err => console.log(err))
     }
@@ -37,7 +37,7 @@ const SignUp = () => {
                         type="text" 
                         placeholder="Enter Name" 
                         autoComplete='off'
-                        name='name'
+                        name='userName'
                         required
                         onChange={handleChange}
                         />
@@ -50,7 +50,7 @@ const SignUp = () => {
                         type="email" 
                         placeholder="Email" 
                         autoComplete='off'
-                        name='email'
+                        name='userEmail'
                         required
                         onChange={handleChange}
                         />
@@ -63,7 +63,7 @@ const SignUp = () => {
                         type="password" 
                         placeholder="Password" 
                         autoComplete='off'
-                        name='password'
+                        name='userPassword'
                         required
                         onChange={handleChange}
                         />
