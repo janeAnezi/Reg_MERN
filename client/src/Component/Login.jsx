@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 
 const Login = () => {
@@ -10,13 +12,18 @@ const Login = () => {
     })
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setFormData(() => ({...prev, [name]: value}))
+        setFormData((prev) => ({...prev, [name]: value}))
     }
+
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:5000/login',{name, email, password})
+        axios.post('http://localhost:5000/login',{email, password})
         .then(result => {console.log(result)
+            if(result.data === "Success") {
+                navigate('/home')
+            } 
         })
         .catch(err => console.log(err))
     }
@@ -35,6 +42,7 @@ const Login = () => {
                         type="email" 
                         placeholder="Email" 
                         autoComplete='off'
+                        id="email"
                         name='email'
                         required
                         onChange={handleChange}
@@ -48,6 +56,7 @@ const Login = () => {
                         type="password" 
                         placeholder="Password" 
                         autoComplete='off'
+                        id="password"
                         name='password'
                         required
                         onChange={handleChange}
