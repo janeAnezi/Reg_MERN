@@ -7,3 +7,4 @@ const teamSchema = new mongoose.Schema({
 })
 
 const teamModel = mongoose.model('team', teamSchema)
+module.exports = teamModel

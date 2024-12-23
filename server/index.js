@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const teamModel = require('./models/team')
+
 require('dotenv').config()
 
 const uri = process.env.MONGO_URI;
@@ -20,7 +22,9 @@ mongoose.connect(uri)
 // })
 
 app.post("/register", (req,res) => {
-    
+    teamModel.create(req.body)
+    .then(team => res.json(team))
+    .catch(err => res.json(err))
 })
 
 app.listen(5000, () => {
