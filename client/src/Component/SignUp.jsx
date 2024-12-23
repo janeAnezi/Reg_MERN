@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -16,10 +17,15 @@ const SignUp = () => {
         setFormData((prev)=>({...prev, [name]: value}))
     }
 
+    const navigate = useNavigate();
+
+    const {name, email, password} = formData
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:5000/register',{name, email, password})
-        .then(result => console.log(result))
+        .then(result => {console.log(result)
+            navigate('/login')
+        })
         .catch(err => console.log(err))
     }
    
@@ -33,11 +39,12 @@ const SignUp = () => {
                         <label htmlFor="name">
                             <strong>Name</strong>
                         </label>
-                        <input className="border-dotted border-2 px-3 w-80 rounded-xl py-1 " 
+                        <input className="border-dotted border-2 px-3 w-80 rounded-xl py-1" 
                         type="text" 
                         placeholder="Enter Name" 
-                        autoComplete='off'
-                        name='name'
+                        autoComplete="off"
+                        id="name"
+                        name="name"
                         required
                         onChange={handleChange}
                         />
@@ -49,7 +56,8 @@ const SignUp = () => {
                         <input  className="border-dotted border-2 px-3 w-80 rounded-xl py-1" 
                         type="email" 
                         placeholder="Email" 
-                        autoComplete='off'
+                        autoComplete="off"
+                        id="email"
                         name='email'
                         required
                         onChange={handleChange}
@@ -62,7 +70,8 @@ const SignUp = () => {
                         <input className="border-dotted border-2 px-3 w-80 rounded-xl py-1" 
                         type="password" 
                         placeholder="Password" 
-                        autoComplete='off'
+                        autoComplete="off"
+                        id="password"
                         name='password'
                         required
                         onChange={handleChange}

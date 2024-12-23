@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 
 const teamSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String
-})
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
+});
 
-const teamModel = mongoose.model('team', teamSchema)
+
+const teamModel = mongoose.model('teams', teamSchema)
 module.exports = teamModel
