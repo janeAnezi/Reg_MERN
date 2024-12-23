@@ -22,20 +22,19 @@ db.once('open', function() {
 })
 
 app.post("/login", async (req, res) => {
-    const {email, password} = req.body;
-    teamModel.findOne({email: email})
-    .then(user => {
-        if(user){
-            if(user.password === password){
-                res.status(200).json('Success')
-            } else {
-                res.status(401).json('Incorrect password')
-            }
-        }else {
-            res.status(404).json('User not found')
+    const { email, password } = req.body;
+    const user = await teamModel.findOne({ email });
+    if (user) {
+        if (user.password === password) {
+            res.status(200).json('Success');
+        } else {
+            res.status(401).json('Incorrect password');
         }
-    })
-})
+    } else {
+        res.status(404).json('User not found');
+    }
+});
+
 
 app.post("/register", async (req, res) => {
     try {

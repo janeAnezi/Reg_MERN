@@ -18,6 +18,7 @@ const Login = () => {
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault();
+        const { email, password } = formData;
 
         axios.post('http://localhost:5000/login',{email, password})
         .then(result => {console.log(result)
