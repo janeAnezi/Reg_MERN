@@ -8,7 +8,7 @@ const SignUp = () => {
         name: '',
         email: '',
         password: '',
-        // confirmPassword: '',
+        confirmPassword: '',
         error: ''
     })
 
@@ -22,6 +22,20 @@ const SignUp = () => {
     const {name, email, password} = formData
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (formData.password !== formData.confirmPassword) {
+            setFormData((prev) => ({
+                ...prev,
+                error: "Passwords do not match",
+            }));
+            return; 
+        }
+
+        setFormData((prev) => ({
+            ...prev,
+            error: '',
+        }));
+
         axios.post('http://localhost:5000/register',{name, email, password})
         .then(result => {console.log(result)
             navigate('/login')
